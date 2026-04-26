@@ -22,6 +22,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set lowercase owner name
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
+        env:
+          OWNER: "${{ github.repository_owner }}"
+
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
@@ -34,4 +40,4 @@ jobs:
         with:
           context: ./${{ matrix.service }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/ccms-${{ matrix.service }}:latest
+          tags: ghcr.io/${{ env.OWNER_LC }}/ccms-${{ matrix.service }}:latest
