@@ -40,4 +40,4 @@ jobs:
         with:
           context: ./${{ matrix.service }}
           push: true
-          tags: ghcr.io/${{ env.OWNER_LC }}/ccms-${{ matrix.service }}:latest
+          tags: ghcr.io/${{ env.OWNER_LC }}/${{ matrix.service }}:latest
